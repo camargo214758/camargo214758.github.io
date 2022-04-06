@@ -7,7 +7,7 @@ Curso de Programador
 ### FrontEnd
 HTML
 CSS
-JS
+JavaScript
 
 ### Back And
 PHP E Mysql
