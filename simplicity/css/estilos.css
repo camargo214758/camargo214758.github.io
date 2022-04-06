@@ -1,0 +1,316 @@
+/* Alteração do Box Model */
+*, *::after, *::before { box-sizing: border-box; }
+
+html { font-size: 14px; }
+
+body { 
+    background-color: whitesmoke; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* Solução do problema do rodapé:border: Etapa1 colocar o body em modo flex e definir altura minima usando a viewport como referencia*/;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+/* Etapa 2: fazer o conteudo (main) ocupar todo o espaço necessário para empurrar o rodapé para baixo*/
+
+main { flex: 1; }
+
+img { max-width: 100%; }
+
+/* Reset de elementos */
+body, h1, h2, h3, p, figure {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-family: Impact, Haettenschweiler, 'Arial hevertica Bold', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+a { text-decoration: none; }
+
+h1 a {
+    background-color: black;
+    color: yellow;
+    border-radius: 5px;
+    padding: 0.3rem 1rem;
+}
+
+header { 
+    background-color: white; 
+    text-transform: uppercase; 
+    
+    /* Deixar o cabeçalho fixo */
+    position: sticky;
+    top: 0;
+}
+
+/* Regra para um elemento (no caso, uma div) com
+a classe limitador E dentro do header 
+
+Importante: o flex configurado aqui funcionará SOMENTE
+para a classe limitador aplicada na div dentro do header.
+Além disso, ela também estará recebendo max-width e margin
+vindos da regra da classe. */
+header .limitador {
+        display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+    /* background-color: lightblue; */
+}
+
+/* Regra para QUALQUER elemento com a classe limitador */
+.limitador {
+    max-width: 1100px;
+    margin: auto;
+    width: 95%;
+}
+
+/* Regras para o texto/link MENU */
+nav h2 { text-align: right; }
+
+nav h2 a { 
+    color: black;
+    font-size: 1.2rem;
+    padding: 1rem;
+    display: inline-block;
+}
+
+nav h2 a:hover,
+nav h2 a:focus,
+.links-menu a:hover 
+.links-menu a:focus {
+    background-color: rgb(220, 220, 220);
+}
+
+.links-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    /* Esta propriedade será
+    usada posteriormente para esconder
+    a lista */
+    display: none;
+
+}
+
+.links-menu a {
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+
+    background-color: rgb(0, 255, 149);
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.links-menu.aberto {
+    display: flex;
+flex-direction: column;
+/* usamos position e coordenadas para garantir o posicionamento correto do menu quando */
+position: absolute;
+right: 0;
+left: 0;
+}
+
+
+.destaque {
+    background-image: url(../imagens/fundo-destaque.jpg);
+    color: white;
+
+height: 90vh;
+
+background-attachment: fixed;
+text-align: center;
+
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+/* Alinha tudo (h2 e p) ao centro */
+align-content: center;
+}
+
+.destaque h2,
+ .destaque p{
+    width: 100%;
+}
+
+.destaque h2 {
+
+   font-size: clamp(2rem, 10vw, 7rem);
+   
+   animation-name: aparecer;
+   animation-duration: 4s;
+   animation-iteration-count: infinite;
+   animation-direction: alternate-reverse;
+ 
+}
+.destaque p {
+    font-size: clamp(1.5rem, 3vw, 4rem);
+    font-weight: bold;
+    animation-name: aparecer;
+    animation-duration: 2s;
+    animation-delay: 1s;
+    animation-fill-mode: backwards;
+    animation: aparecer 3s 2s backwards;
+
+    }
+
+    /*  Etapa 1:Regra de animação*/
+    @keyframes aparecer {
+        from {opacity: 0;
+            transform: translateY(0);
+        
+        }  /* significa de */
+        to {opacity: 1;
+            transform: translateY(200px);
+        
+        }  
+    }
+
+    .front-end,
+    .historia,
+    .localizacao { text-align: center;}
+
+    article h2 { padding: 1rem; }
+
+    article p { padding: 0.5rem 0;}
+
+    .historia {
+        background-image: url(../imagens/fundo-madeira.jpg);
+
+        background-attachment: fixed;
+        background-size: cover;}
+       
+        .historia h2 {
+            color: aliceblue;
+            text-shadow: black 1px 1px 5px;
+        }
+        .historia iframe {
+            width: 100%;
+            max-width: 700px;
+
+        }
+        footer {
+            background-color: black;
+            color: white;
+            height: 15vh;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+        }
+        @media screen and (min-width: 530px){
+            nav {background-color: rgb(84, 170, 26);
+            width: 70%;
+            }
+            nav h2 {display: none;}
+            .links-menu {display: flex;}
+
+            .links-menu li { border: solid 1px red;
+            width: 100%;
+            
+            }
+            .conteudo{
+                background-color: chartreuse (236, 236, 236);
+                padding: .7rem; /*ou 0.7rem*/
+            }
+            .conteudo h2 { text-align: center;}
+
+            table, th,td {
+                border: solid 2px black;
+                border-collapse: collapse;
+            }
+
+            table {
+                width: 80%;
+                margin: auto;
+                max-width: 600px;
+            }
+            caption {
+                text-transform: uppercase;
+                font-weight: bold;
+                font-size: 1.1rem;
+                padding-bottom: 5px;
+            }
+
+            th {
+                background-color: black;
+                color: white;
+                font-size: 1.3rem;
+                padding: 0.5rem;
+            }
+            td {
+                
+                font-size: 1.2rem;
+            }
+
+            td:last-child { font-weight: bold;
+            text-align: right; 
+            padding-right: 5px;  
+                        
+            }
+
+            td:first-child { text-transform: uppercase;}
+            td:nth-child(2) { text-align: center; }
+
+            tr:nth-child(even) { background-color: darkgreen;}
+
+            form {
+                background-color: rgb(255, 173, 173);
+                width: 95%;
+                margin: auto;
+                padding: 1rem;
+                border-radius: 10px;
+
+                }
+
+                input:not([type=radio]):not([type=checkbox]), select, textarea {
+                    border: none;
+                    padding: 1%;
+                    width: 100%;
+                    height: 40px;
+                    box-shadow: black 0 0 4px;
+                }
+
+                textarea { height: auto;}
+
+                button {
+                    background-color: rgb(255, 0, 0);
+                    color: white;
+                    border: none;
+                    padding: 1rem;
+                    font-weight: bold;
+
+                }
+
+                form div { margin-top: 1rem;}
+
+
+
+            @media  screen and (min-width: 800px) {
+            html { font-size: 18px; }
+            header .limitador { height: 15vh; }
+            .destaque {height: 85vh;}
+            }
+        }
+
+        
+        
+
+        
+       
+        
+
+       
+
+
+    
